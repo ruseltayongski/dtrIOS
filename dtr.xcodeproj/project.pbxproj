@@ -73,17 +73,9 @@
 		0477DBF329EBE9FB001E566F /* dtr */ = {
 			isa = PBXGroup;
 			children = (
+				04A15FAC2A17ABE600F0F6A8 /* rusel */,
 				04A2485D29F6329600BFEB70 /* MapKit */,
 				0477DBF429EBE9FB001E566F /* dtrApp.swift */,
-				0477DBF629EBE9FB001E566F /* ContentView.swift */,
-				0477DC0429EC0AAE001E566F /* HomeView.swift */,
-				0437C60529F18508000BF46E /* TabButton.swift */,
-				0437C60B29F19DC8000BF46E /* Home.swift */,
-				0437C60729F18977000BF46E /* CustomCorners.swift */,
-				0437C60929F19893000BF46E /* SideMenu.swift */,
-				04EFAEDC29F3D97E003F44A4 /* AreaAssignment.swift */,
-				040C2FBF29F40EDC00AC7248 /* MapView.swift */,
-				04A2485B29F630EA00BFEB70 /* MapViewCirlcle.swift */,
 				0477DBF829EBE9FD001E566F /* Assets.xcassets */,
 				0477DBFA29EBE9FD001E566F /* Preview Content */,
 			);
@@ -96,6 +88,22 @@
 				0477DBFB29EBE9FD001E566F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		04A15FAC2A17ABE600F0F6A8 /* rusel */ = {
+			isa = PBXGroup;
+			children = (
+				040C2FBF29F40EDC00AC7248 /* MapView.swift */,
+				0477DBF629EBE9FB001E566F /* ContentView.swift */,
+				0477DC0429EC0AAE001E566F /* HomeView.swift */,
+				0437C60529F18508000BF46E /* TabButton.swift */,
+				0437C60B29F19DC8000BF46E /* Home.swift */,
+				0437C60729F18977000BF46E /* CustomCorners.swift */,
+				0437C60929F19893000BF46E /* SideMenu.swift */,
+				04EFAEDC29F3D97E003F44A4 /* AreaAssignment.swift */,
+				04A2485B29F630EA00BFEB70 /* MapViewCirlcle.swift */,
+			);
+			path = rusel;
 			sourceTree = "<group>";
 		};
 		04A2485D29F6329600BFEB70 /* MapKit */ = {

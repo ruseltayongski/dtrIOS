@@ -22,7 +22,7 @@ struct Home: View {
             //Views
             DailyTimeRecord()
                 .tag("Daily Time Record")
-            MapViewCirlcle()
+            MapViewContent()
                 .tag("Area Assignment")
             Notification()
                 .tag("Notification")

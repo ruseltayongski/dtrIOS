@@ -50,8 +50,13 @@ struct HomeView: View {
             .ignoresSafeArea()
             .overlay(
                 Button(action: {
-                    withAnimation(.spring()) {
-                        showMenu.toggle()
+//                    withAnimation(.spring()) {
+//                        showMenu.toggle()
+//                    }
+                    Task.init(priority: .medium) {
+                        withAnimation(.spring()) {
+                            showMenu.toggle()
+                        }
                     }
                 }, label: {
                     //Animated Drawer Button...
