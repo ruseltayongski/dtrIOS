@@ -11,7 +11,7 @@ import SwiftUI
 struct dtrApp: App {
     var body: some Scene {
         WindowGroup {
-            MapViewContent()
+            ContentView()
         }
     }
 }

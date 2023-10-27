@@ -41,6 +41,7 @@
 		0491985729F6CC4D000A06A8 /* DragAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAnnotation.swift; sourceTree = "<group>"; };
 		04A2485B29F630EA00BFEB70 /* MapViewCirlcle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewCirlcle.swift; sourceTree = "<group>"; };
 		04EFAEDC29F3D97E003F44A4 /* AreaAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAssignment.swift; sourceTree = "<group>"; };
+		04F4F7C52AEB98E40021BC1A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +74,7 @@
 		0477DBF329EBE9FB001E566F /* dtr */ = {
 			isa = PBXGroup;
 			children = (
+				04F4F7C52AEB98E40021BC1A /* Info.plist */,
 				04A15FAC2A17ABE600F0F6A8 /* rusel */,
 				04A2485D29F6329600BFEB70 /* MapKit */,
 				0477DBF429EBE9FB001E566F /* dtrApp.swift */,
@@ -144,7 +146,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					0477DBF029EBE9FB001E566F = {
 						CreatedOnToolsVersion = 14.3;
@@ -241,6 +243,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -301,6 +304,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -329,6 +333,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"dtr/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = dtr/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your location to show it on the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -358,6 +363,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"dtr/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = dtr/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your location to show it on the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

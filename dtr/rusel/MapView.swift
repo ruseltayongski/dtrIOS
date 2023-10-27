@@ -83,6 +83,7 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
     }
 
     private func checkLocationAuthorization() {
+        print("hahahaha");
         guard let locationManager = locationManager else {
             return
         }
@@ -220,17 +221,49 @@ struct MapView: UIViewRepresentable {
     class Coordinator: NSObject, MKMapViewDelegate, CLLocationManagerDelegate {
         var parent: MapView
         
+//        func fetchData() {
+//            guard let url = URL(string: "http://49.157.74.3/dtr/mobileV3/area_of_assignment?userid=0454") else {
+//                 print("Invalid URL")
+//                return
+//            }
+//        
+//            URLSession.shared.dataTask(with: url) { data, response, error in
+//                guard let data = data else {
+//                    return
+//                }
+//        
+//                do {
+//                    let decodedData = try JSONDecoder().decode([CoordinatesAPI].self, from: data)
+//                    DispatchQueue.main.async {
+//                        self.parent.items = decodedData
+//                    }
+//                } catch {
+//                    print(error)
+//                }
+//            }.resume()
+//        }
+        
         func fetchData() {
-            guard let url = URL(string: "http://49.157.74.3/dtr/mobileV3/area_of_assignment?userid=0454") else {
-                 print("Invalid URL")
+            // Check if the domain is allowed by ATS in Info.plist, or add it if necessary
+            let domain = "49.157.74.3"
+            let exceptionAllowsInsecureHTTPLoads = true
+            
+            if !isDomainAllowedByATS(domain) {
+                addDomainToATSExceptions(domain, allowsInsecureHTTPLoads: exceptionAllowsInsecureHTTPLoads)
+            } else {
+                print("is not allowed in ATS")
+            }
+            
+            guard let url = URL(string: "http://\(domain)/dtr/mobileV3/area_of_assignment?userid=0454") else {
+                print("Invalid URL")
                 return
             }
-        
+
             URLSession.shared.dataTask(with: url) { data, response, error in
                 guard let data = data else {
                     return
                 }
-        
+
                 do {
                     let decodedData = try JSONDecoder().decode([CoordinatesAPI].self, from: data)
                     DispatchQueue.main.async {
@@ -240,6 +273,38 @@ struct MapView: UIViewRepresentable {
                     print(error)
                 }
             }.resume()
+        }
+        
+        // Function to check if a domain is allowed by ATS
+        func isDomainAllowedByATS(_ domain: String) -> Bool {
+            if let appTransportSecurity = Bundle.main.infoDictionary?["NSAppTransportSecurity"] as? [String: Any],
+               let exceptionDomains = appTransportSecurity["NSExceptionDomains"] as? [String: Any] {
+                return exceptionDomains[domain] != nil
+            }
+            return false
+        }
+
+        // Function to add a domain to ATS exceptions
+        func addDomainToATSExceptions(_ domain: String, allowsInsecureHTTPLoads: Bool) {
+            var infoDictionary = Bundle.main.infoDictionary ?? [:]
+
+            if var appTransportSecurity = infoDictionary["NSAppTransportSecurity"] as? [String: Any] {
+                if var exceptionDomains = appTransportSecurity["NSExceptionDomains"] as? [String: Any] {
+                    exceptionDomains[domain] = ["NSExceptionAllowsInsecureHTTPLoads": allowsInsecureHTTPLoads]
+                    appTransportSecurity["NSExceptionDomains"] = exceptionDomains
+                } else {
+                    appTransportSecurity["NSExceptionDomains"] = [domain: ["NSExceptionAllowsInsecureHTTPLoads": allowsInsecureHTTPLoads]]
+                }
+                infoDictionary["NSAppTransportSecurity"] = appTransportSecurity
+            } else {
+                infoDictionary["NSAppTransportSecurity"] = [domain: ["NSExceptionAllowsInsecureHTTPLoads": allowsInsecureHTTPLoads]]
+            }
+
+            // Update Info.plist with the ATS exception
+            if let infoPlistURL = Bundle.main.url(forResource: "Info", withExtension: "plist"),
+               let plistData = try? PropertyListSerialization.data(fromPropertyList: infoDictionary, format: .xml, options: 0) {
+                try? plistData.write(to: infoPlistURL)
+            }
         }
 
         init(_ parent: MapView) {
