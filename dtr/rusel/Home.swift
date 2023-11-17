@@ -8,41 +8,32 @@
 import SwiftUI
 
 struct Home: View {
-    @Binding var selectedTab: String
-    
+    @State var preferredColumn: NavigationSplitViewColumn = NavigationSplitViewColumn.detail
     // Hiding Tab Bar...
-    init(selectedTab: Binding<String>) {
-        self._selectedTab = selectedTab
-        UITabBar.appearance().isHidden = true
-    }
     var body: some View {
         
         // Tab View with tabs...
-        TabView(selection: $selectedTab) {
-            //Views
+        NavigationSplitView(preferredCompactColumn: $preferredColumn){
+            List {
+                
+            }
+        } detail: {
             DailyTimeRecord()
-                .tag("Daily Time Record")
-            MapViewContent()
-                .tag("Area Assignment")
-            Notification()
-                .tag("Notification")
-            Settings()
-                .tag("Settings")
-            Help()
-                .tag("Help")
         }
     }
 }
 
 struct Home_Previews: PreviewProvider {
+    @State private static var tab: String = "Reset Password" // Create a temporary @State property
+
     static var previews: some View {
-        ContentView()
+        Home() // Pass the binding to the Home view
     }
 }
 
 struct DailyTimeRecord: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Text("Daily Time Record")
                 .font(.largeTitle)
                 .fontWeight(.heavy)
@@ -54,7 +45,7 @@ struct DailyTimeRecord: View {
 
 struct Notification: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Text("Notification")
                 .font(.largeTitle)
                 .fontWeight(.heavy)
@@ -66,7 +57,7 @@ struct Notification: View {
 
 struct Settings: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Text("Settings")
                 .font(.largeTitle)
                 .fontWeight(.heavy)
@@ -78,7 +69,7 @@ struct Settings: View {
 
 struct Help: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Text("Help")
                 .font(.largeTitle)
                 .fontWeight(.heavy)

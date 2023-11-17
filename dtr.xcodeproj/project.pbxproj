@@ -22,6 +22,11 @@
 		0491985829F6CC4D000A06A8 /* DragAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0491985729F6CC4D000A06A8 /* DragAnnotation.swift */; };
 		04A2485C29F630EA00BFEB70 /* MapViewCirlcle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A2485B29F630EA00BFEB70 /* MapViewCirlcle.swift */; };
 		04EFAEDD29F3D97F003F44A4 /* AreaAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EFAEDC29F3D97E003F44A4 /* AreaAssignment.swift */; };
+		BF01FAEC2B05EE2C009731C1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF01FAEB2B05EE2C009731C1 /* LoginView.swift */; };
+		BF01FAEE2B0603A7009731C1 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF01FAED2B0603A7009731C1 /* LoginHelper.swift */; };
+		BF2AEEA82B01EBCE0010C50D /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2AEEA72B01EBCE0010C50D /* CurrentUser.swift */; };
+		BF40B1052AFA06F0009D3943 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40B1042AFA06F0009D3943 /* ResetPasswordView.swift */; };
+		BF40B1082AFA4259009D3943 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40B1072AFA4259009D3943 /* NetworkHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +47,11 @@
 		04A2485B29F630EA00BFEB70 /* MapViewCirlcle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewCirlcle.swift; sourceTree = "<group>"; };
 		04EFAEDC29F3D97E003F44A4 /* AreaAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaAssignment.swift; sourceTree = "<group>"; };
 		04F4F7C52AEB98E40021BC1A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF01FAEB2B05EE2C009731C1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		BF01FAED2B0603A7009731C1 /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
+		BF2AEEA72B01EBCE0010C50D /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		BF40B1042AFA06F0009D3943 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
+		BF40B1072AFA4259009D3943 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +84,7 @@
 		0477DBF329EBE9FB001E566F /* dtr */ = {
 			isa = PBXGroup;
 			children = (
+				BF40B1022AF9D68F009D3943 /* awit */,
 				04F4F7C52AEB98E40021BC1A /* Info.plist */,
 				04A15FAC2A17ABE600F0F6A8 /* rusel */,
 				04A2485D29F6329600BFEB70 /* MapKit */,
@@ -104,6 +115,7 @@
 				0437C60929F19893000BF46E /* SideMenu.swift */,
 				04EFAEDC29F3D97E003F44A4 /* AreaAssignment.swift */,
 				04A2485B29F630EA00BFEB70 /* MapViewCirlcle.swift */,
+				BF01FAEB2B05EE2C009731C1 /* LoginView.swift */,
 			);
 			path = rusel;
 			sourceTree = "<group>";
@@ -116,6 +128,41 @@
 				0491985729F6CC4D000A06A8 /* DragAnnotation.swift */,
 			);
 			path = MapKit;
+			sourceTree = "<group>";
+		};
+		BF2AEEA62B01EBB30010C50D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BF2AEEA72B01EBCE0010C50D /* CurrentUser.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BF40B1022AF9D68F009D3943 /* awit */ = {
+			isa = PBXGroup;
+			children = (
+				BF2AEEA62B01EBB30010C50D /* Models */,
+				BF40B1062AFA4147009D3943 /* Helpers */,
+				BF40B1032AFA06D0009D3943 /* Views */,
+			);
+			path = awit;
+			sourceTree = "<group>";
+		};
+		BF40B1032AFA06D0009D3943 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BF40B1042AFA06F0009D3943 /* ResetPasswordView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BF40B1062AFA4147009D3943 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BF40B1072AFA4259009D3943 /* NetworkHelper.swift */,
+				BF01FAED2B0603A7009731C1 /* LoginHelper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,16 +238,21 @@
 				0491985229F6BCC4000A06A8 /* MKMapRep.swift in Sources */,
 				0477DC0529EC0AAE001E566F /* HomeView.swift in Sources */,
 				04EFAEDD29F3D97F003F44A4 /* AreaAssignment.swift in Sources */,
+				BF40B1052AFA06F0009D3943 /* ResetPasswordView.swift in Sources */,
 				0437C60629F18508000BF46E /* TabButton.swift in Sources */,
 				0477DBF729EBE9FB001E566F /* ContentView.swift in Sources */,
 				04A2485C29F630EA00BFEB70 /* MapViewCirlcle.swift in Sources */,
+				BF40B1082AFA4259009D3943 /* NetworkHelper.swift in Sources */,
 				0437C60A29F19893000BF46E /* SideMenu.swift in Sources */,
 				0477DBF529EBE9FB001E566F /* dtrApp.swift in Sources */,
+				BF01FAEC2B05EE2C009731C1 /* LoginView.swift in Sources */,
 				0437C60829F18977000BF46E /* CustomCorners.swift in Sources */,
 				0491985829F6CC4D000A06A8 /* DragAnnotation.swift in Sources */,
 				040C2FC029F40EDC00AC7248 /* MapView.swift in Sources */,
 				0437C60C29F19DC9000BF46E /* Home.swift in Sources */,
+				BF2AEEA82B01EBCE0010C50D /* CurrentUser.swift in Sources */,
 				0491985429F6BD54000A06A8 /* MapViewModels.swift in Sources */,
+				BF01FAEE2B0603A7009731C1 /* LoginHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +392,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -370,6 +423,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
