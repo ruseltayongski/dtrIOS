@@ -64,11 +64,13 @@ struct HomeView: View {
                         Image(systemName: "questionmark.circle")
                         Text("Help")
                     }
-                    NavigationLink {
-                        ResetPasswordView()
-                    } label: {
-                        Image(systemName: "lock.open")
-                        Text("Reset DTR Password")
+                    if(userData.authority == "reset_password"){
+                        NavigationLink {
+                            ResetPasswordView()
+                        } label: {
+                            Image(systemName: "lock.open")
+                            Text("Reset DTR Password")
+                        }
                     }
                 }
             }
