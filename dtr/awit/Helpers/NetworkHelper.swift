@@ -6,9 +6,10 @@
 //
 
 import Foundation
-var domain = "49.157.74.3"
+import SwiftUI
+//domain not declared here because Property wrappers are not supported in top-level code yet
 
-func resetPassword(userid: String, reset_userid: String) async -> String? {
+func resetPassword(userid: String, reset_userid: String, domain: String) async -> String? {
     guard let url = URL(string: "http://\(domain)/dtr/mobile/reset_password?userid=\(userid)&reset_userid=\(reset_userid)") else {
         print ("Invalid URL")
         return ""
@@ -30,7 +31,7 @@ func resetPassword(userid: String, reset_userid: String) async -> String? {
         return ""
     }
 }
-func login(imei: String) async -> LoginResponse? {
+func login(imei: String, domain: String) async -> LoginResponse? {
     guard let url = URL(string: "http://\(domain)/dtr/mobileV2/login1?imei=\(imei)") else {
         print("Invalid Url")
         return nil
@@ -63,7 +64,7 @@ func logout(){
     
 }
 
-func updateIMEI(imei: String, userid: String) async -> String {
+func updateIMEI(imei: String, userid: String, domain: String) async -> String {
     guard let url = URL(string: "http://\(domain)/dtr/mobileV2/imei?imei=\(imei)&userid=\(userid)") else {
         print("Invalid URL")
         return ""
@@ -92,7 +93,7 @@ func updateIMEI(imei: String, userid: String) async -> String {
     }
 }
 
-func checkUserName(userid: String) async -> String? {
+func checkUserName(userid: String, domain: String) async -> String? {
     guard let url = URL(string: "http://\(domain)/dtr/mobile/check_username?&reset_userid=\(userid)") else {
         print("Invalid URL")
         return ""

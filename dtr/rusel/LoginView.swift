@@ -37,7 +37,7 @@ struct LoginView: View {
                     Text("IOS Version 1.0.0")
                     Button("LOGIN"){
                         Task{
-                            let result = await login(imei: UDID)
+                            let result = await login(imei: UDID, domain: userData.domain)
                             let user = result?.response
                             print(type(of: user?.section))
                             if(result?.code == 200){
@@ -49,8 +49,7 @@ struct LoginView: View {
                                     
                                     dmo_roles: Int(user?.dmo_roles ?? 0),
                                     area_of_assignment_roles: Int(user?.area_of_assignment_roles ?? 0),
-                                    region: user?.region ?? ""
-                                    
+                                    region: user?.region ?? "", domain: "23.2"
                                 )
 
                                 isLoggedIn.toggle()
@@ -116,8 +115,8 @@ struct BackgroundClearView: UIViewRepresentable {
 
 struct ModalUpdateIP: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var userData: CurrentUser
     @State var publicIp: String = ""
-    
     var body: some View {
         VStack {
             TextField("Enter Public IP", text: $publicIp)
@@ -125,6 +124,7 @@ struct ModalUpdateIP: View {
             HStack {
                 Button("Save") {
                     // Save data
+                    userData.setDomain(domain: publicIp)
                     self.presentationMode.wrappedValue.dismiss()
                 }
                 .background(Color.green)
@@ -142,6 +142,7 @@ struct ModalUpdateIP: View {
         .environment(\.colorScheme, .light)
         .cornerRadius(10)
         .padding(25)
+        .onAppear{publicIp = userData.domain}
     }
 }
 
@@ -149,7 +150,7 @@ struct ModalUDID: View {
     @Environment(\.presentationMode) var presentationMode
 @State var UDID: String = "\(UIDevice.current.identifierForVendor?.uuidString ?? "unknown")"
     @State var userid: String = ""
-    
+    @EnvironmentObject var userData: CurrentUser
     var body: some View {
         VStack {
             TextField("Enter Public IP", text: $UDID)
@@ -160,7 +161,7 @@ struct ModalUDID: View {
                 Button("Update") {
                     // Save data
                     Task{
-                        await updateIMEI(imei: UDID, userid: userid)
+                        await updateIMEI(imei: UDID, userid: userid, domain: userData.domain)
                     }
                     self.presentationMode.wrappedValue.dismiss()
                 }
