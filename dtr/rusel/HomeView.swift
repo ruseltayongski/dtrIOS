@@ -8,89 +8,84 @@
 import SwiftUI
 
 struct HomeView: View {
-    //selected Tab...
-    @State var selectedTab = "Daily Time Record"
-    @State var showMenu = false
-    //Animation Namespace...
-    @Namespace var animation
+    @State var preferredColumn: NavigationSplitViewColumn = NavigationSplitViewColumn.detail
+    @Environment(\.dismiss) private var dismiss
+    @State var userData = CurrentUser()
+    @Binding var isLoggedIn: Bool
     var body: some View {
-        ZStack {
-            Color.blue
-                .ignoresSafeArea()
-        
-            //Side menu
-            ScrollView(getRect().height < 750 ? .vertical : .init(), showsIndicators: false, content: {
-                SideMenu(selectedTab: $selectedTab)
-            })
-            
-            ZStack {
-                //Two background Cards..
-                Color.white
-                    .opacity(0.5)
-                    .cornerRadius(showMenu ? 15 : 0)
-                    //shadow
-                    .shadow(color: Color.black.opacity(0.7), radius: 5, x: -5, y: 0)
-                    .offset(x: showMenu ? -25 : 0)
-                    .padding(.vertical, 30)
-                
-                Color.white
-                    .opacity(0.4)
-                    .cornerRadius(showMenu ? 15 : 0)
-                    //shadow
-                    .shadow(color: Color.black.opacity(0.7), radius: 5, x: -5, y: 0)
-                    .offset(x: showMenu ? -50 : 0)
-                    .padding(.vertical, 60)
-                
-                Home(selectedTab: $selectedTab)
-                    .cornerRadius(showMenu ? 15 : 0)
-            }
-            //Scaling and Moving the View...
-            .scaleEffect(showMenu ? 0.84 : 1)
-            .offset(x: showMenu ? getRect().width - 120 : 0)
-            .ignoresSafeArea()
-            .overlay(
-                Button(action: {
-//                    withAnimation(.spring()) {
-//                        showMenu.toggle()
-//                    }
-                    Task.init(priority: .medium) {
-                        withAnimation(.spring()) {
-                            showMenu.toggle()
-                        }
-                    }
-                }, label: {
-                    //Animated Drawer Button...
-                    VStack(spacing: 5) {
-                        Capsule()
-                            .fill(showMenu ? Color.white : Color.primary)
-                            .frame(width: 30, height: 3)
-                        //Rotating
-                            .rotationEffect(.init(degrees: showMenu ? -50 : 0))
-                            .offset(x: showMenu ? 2 : 0)
+        NavigationSplitView(preferredCompactColumn: $preferredColumn){
+            VStack {
+                HStack{
+                    VStack {
+                        Image("doh")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 70, height: 70)
+                            .cornerRadius(10)
+                        Text((userData.fname ?? "NA") + " " + (userData.lname ?? "NA"))
+                            .font(.title)
+                            .fontWeight(.heavy)
+                            .foregroundColor(.white)
                         
-                        VStack(spacing: 5) {
-                            Capsule()
-                                .fill(showMenu ? Color.white : Color.primary)
-                                .frame(width: 30, height: 3)
-                            //Moving up when clicked...
-                            Capsule()
-                                .fill(showMenu ? Color.white : Color.primary)
-                                .frame(width: 30, height: 3)
-                                .offset(y:showMenu ? -8 : 0)
-                        }
+                        Text("View Profile")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .opacity(0.7)
                     }
-                })
-                .padding(),alignment: .topLeading
-            )
-            
-        }
+                }.frame(maxWidth: .infinity).background(Color.blue)
+                List {
+                    NavigationLink {
+                        DailyTimeRecord()
+                    } label: {
+                        Image(systemName: "clock.arrow.circlepath")
+                        Text("Daily Time Record")
+                    }
+                    NavigationLink {
+                        MapViewContent()
+                    } label: {
+                        Image(systemName: "house")
+                        Text("Area Assignment")
+                    }
+                    NavigationLink {
+                        Notification()
+                    } label: {
+                        Image(systemName: "bell.badge")
+                        Text("Notification")
+                    }
+                    NavigationLink {
+                        Settings()
+                    } label: {
+                        Image(systemName: "gearshape.fill")
+                        Text("Settings")
+                    }
+                    NavigationLink {
+                        Help()
+                    } label: {
+                        Image(systemName: "questionmark.circle")
+                        Text("Help")
+                    }
+                    NavigationLink {
+                        ResetPasswordView()
+                    } label: {
+                        Image(systemName: "lock.open")
+                        Text("Reset DTR Password")
+                    }
+                }
+            }
+            Button("Logout"){
+                userData.logout()
+                isLoggedIn.toggle()
+            }
+        } detail: {
+            DailyTimeRecord()
+        }.navigationBarHidden(true)
     }
 }
 
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(isLoggedIn: .constant(true))
     }
 }
 
