@@ -8,8 +8,27 @@
 import Foundation
 var domain = "49.157.74.3"
 
-func resetPassword() {
+func resetPassword(userid: String, reset_userid: String) async -> String? {
+    guard let url = URL(string: "http://\(domain)/dtr/mobile/reset_password?userid=\(userid)&reset_userid=\(reset_userid)") else {
+        print ("Invalid URL")
+        return ""
+    }
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
     
+    do {
+        let (data, _) = try await URLSession.shared.data(for: request)
+        let decodedResponse = try? JSONDecoder().decode(String?.self, from: data)
+        if let decodedResponse = decodedResponse {
+            return decodedResponse
+        } else {
+            print("User not found or no authority")
+            return ""
+        }
+    } catch{
+        print("Error: \(error)")
+        return ""
+    }
 }
 func login(imei: String) async -> LoginResponse? {
     guard let url = URL(string: "http://\(domain)/dtr/mobileV2/login1?imei=\(imei)") else {
@@ -73,6 +92,24 @@ func updateIMEI(imei: String, userid: String) async -> String {
     }
 }
 
+func checkUserName(userid: String) async -> String? {
+    guard let url = URL(string: "http://\(domain)/dtr/mobile/check_username?&reset_userid=\(userid)") else {
+        print("Invalid URL")
+        return ""
+    }
+    
+    var request = URLRequest(url:url)
+    request.httpMethod = "POST"
+    do {
+        let (data, _) = try await URLSession.shared.data(for: request)
+        let decodedResponse = try? JSONDecoder().decode(String?.self, from: data)
+        print(decodedResponse ?? "none")
+        return decodedResponse
+    } catch {
+        print("Error: \(error)")
+        return ""
+    }
+}
 
 struct Response: Codable {
     let code: Int
