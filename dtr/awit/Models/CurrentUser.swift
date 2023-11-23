@@ -17,6 +17,7 @@ class CurrentUser: ObservableObject {
     var dmo_roles: Int?
     var area_of_assignment_roles: Int?
     var region: String?
+    var domain: String
     
     init(id: String, fname: String, lname: String, authority: String, section: String, dmo_roles: Int, area_of_assignment_roles: Int, region: String) {
         self.id = id
@@ -35,9 +36,10 @@ class CurrentUser: ObservableObject {
         UserDefaults.standard.setValue(dmo_roles, forKey: "dmo_roles")
         UserDefaults.standard.setValue(area_of_assignment_roles, forKey: "area_of_assignment_roles")
         UserDefaults.standard.setValue(region, forKey: "region")
+        self.domain = "49.157.74.3"
     }
     
-    func updateUser(id: String, fname: String, lname: String, authority: String, dmo_roles: Int, area_of_assignment_roles: Int, region: String) {
+    func updateUser(id: String, fname: String, lname: String, authority: String, dmo_roles: Int, area_of_assignment_roles: Int, region: String, domain: String) {
         self.id = id
         self.fname = fname
         self.lname = lname
@@ -45,7 +47,6 @@ class CurrentUser: ObservableObject {
         self.dmo_roles = dmo_roles
         self.area_of_assignment_roles = area_of_assignment_roles
         self.region = region
-
         UserDefaults.standard.setValue(id, forKey: "userid")
         UserDefaults.standard.setValue(fname, forKey: "fname")
         UserDefaults.standard.setValue(lname, forKey: "lname")
@@ -64,6 +65,7 @@ class CurrentUser: ObservableObject {
         self.dmo_roles = UserDefaults.standard.integer(forKey: "dmo_roles")
         self.area_of_assignment_roles = UserDefaults.standard.integer(forKey: "area_of_assignment_roles")
         self.region = UserDefaults.standard.string(forKey: "region")
+        self.domain = "49.157.74.3"
     }
     
     func logout(){
@@ -83,5 +85,9 @@ class CurrentUser: ObservableObject {
         self.dmo_roles = UserDefaults.standard.integer(forKey: "dmo_roles")
         self.area_of_assignment_roles = UserDefaults.standard.integer(forKey: "area_of_assignment_roles")
         self.region = UserDefaults.standard.string(forKey: "region")
+    }
+    
+    func setDomain(domain: String){
+        self.domain = domain
     }
 }

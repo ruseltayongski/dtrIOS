@@ -12,6 +12,7 @@ struct ResetPasswordView: View {
     @State private var showModal: Bool = false
     @State var user: String = ""
     @State var userid: String = (CurrentUser().id ?? "")
+    @EnvironmentObject var userData: CurrentUser
     var body: some View {
         NavigationStack {
             VStack {
@@ -21,8 +22,10 @@ struct ResetPasswordView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 Button("Reset Password"){
+                    print(CurrentUser().lname ?? "n")
+                    print(userData.lname ?? "noneL")
                     Task {
-                        user = await checkUserName(userid: userid_reset) ?? ""
+                        user = await checkUserName(userid: userid_reset, domain: userData.domain) ?? ""
                         if (user != ""){
                             showModal.toggle()
                         }
@@ -48,6 +51,7 @@ struct ModalReset: View {
     @Binding var username: String
     @Binding var userid: String
     @Binding var showModal: Bool
+    @EnvironmentObject var userData: CurrentUser
     var body: some View {
         VStack {
             Text("Are you sure you want to reset the password of \(username)")
@@ -60,7 +64,7 @@ struct ModalReset: View {
                 
                 Button("Confirm") {
                     Task {
-                        let result = await resetPassword(userid: userid, reset_userid: userid_reset)
+                        let result = await resetPassword(userid: userid, reset_userid: userid_reset, domain: userData.domain)
                         showModal.toggle()
                     }
                 }

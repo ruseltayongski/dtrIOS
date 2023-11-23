@@ -32,6 +32,8 @@ struct Home_Previews: PreviewProvider {
 }
 
 struct DailyTimeRecord: View {
+    @EnvironmentObject var userData: CurrentUser
+    @State var text: String = ""
     var body: some View {
         NavigationStack {
             Text("Daily Time Record")
