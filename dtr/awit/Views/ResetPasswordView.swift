@@ -22,8 +22,6 @@ struct ResetPasswordView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 Button("Reset Password"){
-                    print(CurrentUser().lname ?? "n")
-                    print(userData.lname ?? "noneL")
                     Task {
                         user = await checkUserName(userid: userid_reset, domain: userData.domain) ?? ""
                         if (user != ""){
@@ -57,7 +55,7 @@ struct ModalReset: View {
             Text("Are you sure you want to reset the password of \(username)")
             HStack {
                 Button("Cancel") {
-                    showModal.toggle()
+                    dismiss()
                 }
                 .padding()
                 .foregroundColor(.red)
@@ -65,6 +63,7 @@ struct ModalReset: View {
                 Button("Confirm") {
                     Task {
                         let result = await resetPassword(userid: userid, reset_userid: userid_reset, domain: userData.domain)
+                        print(result ?? "none")
                         showModal.toggle()
                     }
                 }

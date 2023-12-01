@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import SwiftData
 @main
 struct dtrApp: App {
     @StateObject private var userData = CurrentUser()
@@ -14,5 +14,6 @@ struct dtrApp: App {
         WindowGroup {
             ContentView().environmentObject(userData)
         }
+        .modelContainer(for: OfficeOrder.self)
     }
 }

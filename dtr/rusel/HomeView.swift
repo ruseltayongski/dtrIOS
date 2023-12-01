@@ -47,6 +47,12 @@ struct HomeView: View {
                         Text("Area Assignment")
                     }
                     NavigationLink {
+                        OfficeOrderView()
+                    } label: {
+                        Image(systemName: "newspaper")
+                        Text("Office Order")
+                    }
+                    NavigationLink {
                         Notification()
                     } label: {
                         Image(systemName: "bell.badge")

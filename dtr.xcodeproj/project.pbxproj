@@ -24,9 +24,17 @@
 		04EFAEDD29F3D97F003F44A4 /* AreaAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EFAEDC29F3D97E003F44A4 /* AreaAssignment.swift */; };
 		BF01FAEC2B05EE2C009731C1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF01FAEB2B05EE2C009731C1 /* LoginView.swift */; };
 		BF01FAEE2B0603A7009731C1 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF01FAED2B0603A7009731C1 /* LoginHelper.swift */; };
+		BF0A7C662B171E4C000F34B2 /* JsonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0A7C652B171E4C000F34B2 /* JsonData.swift */; };
 		BF2AEEA82B01EBCE0010C50D /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2AEEA72B01EBCE0010C50D /* CurrentUser.swift */; };
+		BF3D0C892B19817B005160EA /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D0C882B19817B005160EA /* Toast.swift */; };
+		BF3D0C8B2B19819C005160EA /* ToastStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D0C8A2B19819C005160EA /* ToastStyle.swift */; };
+		BF3D0C8D2B1981D3005160EA /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D0C8C2B1981D3005160EA /* ToastView.swift */; };
+		BF3D0C8F2B198204005160EA /* ToastModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D0C8E2B198204005160EA /* ToastModifier.swift */; };
+		BF3D0C912B198941005160EA /* View_toastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3D0C902B198941005160EA /* View_toastView.swift */; };
 		BF40B1052AFA06F0009D3943 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40B1042AFA06F0009D3943 /* ResetPasswordView.swift */; };
 		BF40B1082AFA4259009D3943 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40B1072AFA4259009D3943 /* NetworkHelper.swift */; };
+		BF5B58072B10530D008CD00D /* OfficeOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B58062B10530D008CD00D /* OfficeOrder.swift */; };
+		BFFBAF692B0F4685009680AA /* OfficeOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFBAF682B0F4685009680AA /* OfficeOrderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,9 +57,17 @@
 		04F4F7C52AEB98E40021BC1A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF01FAEB2B05EE2C009731C1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		BF01FAED2B0603A7009731C1 /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
+		BF0A7C652B171E4C000F34B2 /* JsonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonData.swift; sourceTree = "<group>"; };
 		BF2AEEA72B01EBCE0010C50D /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		BF3D0C882B19817B005160EA /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		BF3D0C8A2B19819C005160EA /* ToastStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastStyle.swift; sourceTree = "<group>"; };
+		BF3D0C8C2B1981D3005160EA /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		BF3D0C8E2B198204005160EA /* ToastModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModifier.swift; sourceTree = "<group>"; };
+		BF3D0C902B198941005160EA /* View_toastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View_toastView.swift; sourceTree = "<group>"; };
 		BF40B1042AFA06F0009D3943 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		BF40B1072AFA4259009D3943 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		BF5B58062B10530D008CD00D /* OfficeOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeOrder.swift; sourceTree = "<group>"; };
+		BFFBAF682B0F4685009680AA /* OfficeOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeOrderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,13 +150,28 @@
 			isa = PBXGroup;
 			children = (
 				BF2AEEA72B01EBCE0010C50D /* CurrentUser.swift */,
+				BF5B58062B10530D008CD00D /* OfficeOrder.swift */,
+				BF0A7C652B171E4C000F34B2 /* JsonData.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		BF3D0C852B197FDE005160EA /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				BF3D0C882B19817B005160EA /* Toast.swift */,
+				BF3D0C8A2B19819C005160EA /* ToastStyle.swift */,
+				BF3D0C8C2B1981D3005160EA /* ToastView.swift */,
+				BF3D0C8E2B198204005160EA /* ToastModifier.swift */,
+				BF3D0C902B198941005160EA /* View_toastView.swift */,
+			);
+			path = Toast;
 			sourceTree = "<group>";
 		};
 		BF40B1022AF9D68F009D3943 /* awit */ = {
 			isa = PBXGroup;
 			children = (
+				BF3D0C852B197FDE005160EA /* Toast */,
 				BF2AEEA62B01EBB30010C50D /* Models */,
 				BF40B1062AFA4147009D3943 /* Helpers */,
 				BF40B1032AFA06D0009D3943 /* Views */,
@@ -152,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				BF40B1042AFA06F0009D3943 /* ResetPasswordView.swift */,
+				BFFBAF682B0F4685009680AA /* OfficeOrderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -238,19 +270,27 @@
 				0491985229F6BCC4000A06A8 /* MKMapRep.swift in Sources */,
 				0477DC0529EC0AAE001E566F /* HomeView.swift in Sources */,
 				04EFAEDD29F3D97F003F44A4 /* AreaAssignment.swift in Sources */,
+				BFFBAF692B0F4685009680AA /* OfficeOrderView.swift in Sources */,
 				BF40B1052AFA06F0009D3943 /* ResetPasswordView.swift in Sources */,
 				0437C60629F18508000BF46E /* TabButton.swift in Sources */,
 				0477DBF729EBE9FB001E566F /* ContentView.swift in Sources */,
 				04A2485C29F630EA00BFEB70 /* MapViewCirlcle.swift in Sources */,
+				BF3D0C8B2B19819C005160EA /* ToastStyle.swift in Sources */,
 				BF40B1082AFA4259009D3943 /* NetworkHelper.swift in Sources */,
 				0437C60A29F19893000BF46E /* SideMenu.swift in Sources */,
 				0477DBF529EBE9FB001E566F /* dtrApp.swift in Sources */,
 				BF01FAEC2B05EE2C009731C1 /* LoginView.swift in Sources */,
+				BF3D0C912B198941005160EA /* View_toastView.swift in Sources */,
 				0437C60829F18977000BF46E /* CustomCorners.swift in Sources */,
 				0491985829F6CC4D000A06A8 /* DragAnnotation.swift in Sources */,
 				040C2FC029F40EDC00AC7248 /* MapView.swift in Sources */,
+				BF3D0C8D2B1981D3005160EA /* ToastView.swift in Sources */,
+				BF0A7C662B171E4C000F34B2 /* JsonData.swift in Sources */,
+				BF3D0C8F2B198204005160EA /* ToastModifier.swift in Sources */,
 				0437C60C29F19DC9000BF46E /* Home.swift in Sources */,
+				BF5B58072B10530D008CD00D /* OfficeOrder.swift in Sources */,
 				BF2AEEA82B01EBCE0010C50D /* CurrentUser.swift in Sources */,
+				BF3D0C892B19817B005160EA /* Toast.swift in Sources */,
 				0491985429F6BD54000A06A8 /* MapViewModels.swift in Sources */,
 				BF01FAEE2B0603A7009731C1 /* LoginHelper.swift in Sources */,
 			);
