@@ -112,6 +112,88 @@ func checkUserName(userid: String, domain: String) async -> String? {
     }
 }
 
+func uploadSo(officeOrder: OfficeOrderData, domain: String) async -> String? {
+    guard let url = URL(string: "http://\(domain)/dtr/mobileV2/add-so") else {
+        print("Invalid URL")
+        return ""
+    }
+
+    var request = URLRequest(url: url)
+    
+    request.httpMethod = "POST"
+    
+    // Set Content-Type header for JSON
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+    do {
+        let jsonData = try JSONEncoder().encode(["data": officeOrder.description])
+        
+        request.httpBody = jsonData
+        printRequestDetails(request)
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+        let decodedResponse = try? JSONDecoder().decode(String?.self, from: data)
+        // Print raw response
+         print("Raw Response: \(String(data: data, encoding: .utf8) ?? "Unable to convert data to string")")
+
+         // Check HTTP status code
+         guard let httpResponse = response as? HTTPURLResponse else {
+             return("no response")
+         }
+        print("HTTP Status Code: \(httpResponse.statusCode)")
+         // Decode response if needed
+         
+        print(decodedResponse ?? "No response")
+        return String(httpResponse.statusCode)
+    }
+    catch {
+        // Print the error message
+        print("Error: \(error)")
+        return "Error: \(error.localizedDescription)"
+    }
+}
+
+func uploadCto(timeOff: TimeOffData, domain: String) async -> String?{
+    guard let url = URL(string: "http://\(domain)/dtr/mobileV2/add-cdo") else {
+        print("Invalid URL")
+        return "Invalid URL"
+    }
+    
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    do {
+        let jsonData = try JSONEncoder().encode(["data" : timeOff.description])
+        request.httpBody = jsonData
+        printRequestDetails(request)
+        let (data, response) = try await URLSession.shared.data(for: request)
+        let decodedResponse = try? JSONDecoder().decode(String?.self, from: data)
+        print("Raw Response: \(String(data: data, encoding: .utf8) ?? "Unable to convert data to string")")
+        guard let httpResponse = response as? HTTPURLResponse else {
+            return("no response")
+        }
+       print("HTTP Status Code: \(httpResponse.statusCode)")
+        // Decode response if needed
+        
+       print(decodedResponse ?? "No response")
+       return String(httpResponse.statusCode)
+    } catch {
+        print("Error: \(error)")
+        return "Error: \(error.localizedDescription)"
+    }
+}
+
+func printRequestDetails(_ request: URLRequest) {
+    print("URL: \(request.url?.absoluteString ?? "")")
+    print("Method: \(request.httpMethod ?? "")")
+    if let headers = request.allHTTPHeaderFields {
+        print("Headers: \(headers)")
+    }
+    if let body = request.httpBody {
+        print("Body: \(String(data: body, encoding: .utf8) ?? "")")
+    }
+}
+
 struct Response: Codable {
     let code: Int
     let response: String
@@ -131,4 +213,50 @@ struct UserDetails: Codable {
     let dmo_roles: Int
     let area_of_assignment_roles: Int
     let region: String
+}
+
+struct TimeOffData: Codable {
+    let userid: String
+    let cdo: Array<CTO>
+}
+
+struct OfficeOrderData: Codable {
+    let userid: String
+    let so: Array<SO>
+    
+}
+
+struct CTO: Codable {
+    let daterange: String
+}
+
+struct SO: Codable {
+    let so_no: String
+    let daterange: String
+}
+
+extension TimeOffData: CustomStringConvertible {
+    var description: String {
+        let ctoDescriptions = cdo.map { "\($0)" }.joined(separator: ", ")
+        return "{\"userid\": \"\(userid)\", \"cdo\": [\(ctoDescriptions)]}"
+    }
+}
+
+extension OfficeOrderData: CustomStringConvertible {
+    var description: String {
+        let soDescriptions = so.map { "\($0)" }.joined(separator: ", ")
+        return "{\"userid\": \"\(userid)\", \"so\": [\(soDescriptions)]}"
+    }
+}
+
+extension CTO: CustomStringConvertible {
+    var description: String {
+        return "{\"daterange\": \"\(daterange)\"}"
+    }
+}
+
+extension SO: CustomStringConvertible {
+    var description: String {
+        return "{\"so_no\": \"\(so_no)\", \"daterange\": \"\(daterange)\"}"
+    }
 }

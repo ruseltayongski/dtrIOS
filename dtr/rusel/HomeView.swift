@@ -47,6 +47,18 @@ struct HomeView: View {
                         Text("Area Assignment")
                     }
                     NavigationLink {
+                        OfficeOrderView()
+                    } label: {
+                        Image(systemName: "newspaper")
+                        Text("Office Order")
+                    }
+                    NavigationLink {
+                        CTOView()
+                    } label: {
+                        Image(systemName: "doc.badge.clock")
+                        Text("Compensatory Time Off")
+                    }
+                    NavigationLink {
                         Notification()
                     } label: {
                         Image(systemName: "bell.badge")
