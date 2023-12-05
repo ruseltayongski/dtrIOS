@@ -14,6 +14,6 @@ struct dtrApp: App {
         WindowGroup {
             ContentView().environmentObject(userData)
         }
-        .modelContainer(for: OfficeOrder.self)
+        .modelContainer(for: [OfficeOrder.self, Cto.self])
     }
 }

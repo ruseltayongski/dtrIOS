@@ -153,23 +153,33 @@ func uploadSo(officeOrder: OfficeOrderData, domain: String) async -> String? {
     }
 }
 
-func testPost() async {
+func uploadCto(timeOff: TimeOffData, domain: String) async -> String?{
+    guard let url = URL(string: "http://\(domain)/dtr/mobileV2/add-cdo") else {
+        print("Invalid URL")
+        return "Invalid URL"
+    }
+    
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     do {
-        let url = URL(string: "https://jsonplaceholder.typicode.com/posts")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let testData = ["title": "foo", "body": "bar", "userId": 1] as [String : Any]
-        request.httpBody = try? JSONSerialization.data(withJSONObject: testData)
-        
+        let jsonData = try JSONEncoder().encode(["data" : timeOff.description])
+        request.httpBody = jsonData
+        printRequestDetails(request)
         let (data, response) = try await URLSession.shared.data(for: request)
         let decodedResponse = try? JSONDecoder().decode(String?.self, from: data)
-        print("Response: \(response)")
-        print("Data: \(decodedResponse ?? "none")")
-    }
-    catch {
-        print("error")
+        print("Raw Response: \(String(data: data, encoding: .utf8) ?? "Unable to convert data to string")")
+        guard let httpResponse = response as? HTTPURLResponse else {
+            return("no response")
+        }
+       print("HTTP Status Code: \(httpResponse.statusCode)")
+        // Decode response if needed
+        
+       print(decodedResponse ?? "No response")
+       return String(httpResponse.statusCode)
+    } catch {
+        print("Error: \(error)")
+        return "Error: \(error.localizedDescription)"
     }
 }
 
@@ -205,10 +215,19 @@ struct UserDetails: Codable {
     let region: String
 }
 
+struct TimeOffData: Codable {
+    let userid: String
+    let cdo: Array<CTO>
+}
+
 struct OfficeOrderData: Codable {
     let userid: String
     let so: Array<SO>
     
+}
+
+struct CTO: Codable {
+    let daterange: String
 }
 
 struct SO: Codable {
@@ -216,10 +235,23 @@ struct SO: Codable {
     let daterange: String
 }
 
+extension TimeOffData: CustomStringConvertible {
+    var description: String {
+        let ctoDescriptions = cdo.map { "\($0)" }.joined(separator: ", ")
+        return "{\"userid\": \"\(userid)\", \"cdo\": [\(ctoDescriptions)]}"
+    }
+}
+
 extension OfficeOrderData: CustomStringConvertible {
     var description: String {
         let soDescriptions = so.map { "\($0)" }.joined(separator: ", ")
         return "{\"userid\": \"\(userid)\", \"so\": [\(soDescriptions)]}"
+    }
+}
+
+extension CTO: CustomStringConvertible {
+    var description: String {
+        return "{\"daterange\": \"\(daterange)\"}"
     }
 }
 

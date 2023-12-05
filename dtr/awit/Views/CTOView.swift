@@ -1,39 +1,34 @@
 //
-//  OfficeOrderView.swift
+//  CTOView.swift
 //  dtr
 //
-//  Created by ICTU1 on 11/23/23.
+//  Created by ICTU1 on 12/1/23.
 //
 
 import SwiftUI
 import SwiftData
 
-struct OfficeOrderView: View {
+struct CTOView: View {
+    @Query var ctos: [Cto]
     @Environment(\.modelContext) var modelContext
-    @Query var officeOrders: [OfficeOrder]
     @State private var showSheet = false
     @State private var showAlert = false
     @State var userid: String = (CurrentUser().id ?? "")
     @EnvironmentObject var userData: CurrentUser
     @State var toast: Toast? = nil
     var body: some View {
-        NavigationStack {
-            ZStack(alignment: .bottomTrailing) {
+        NavigationStack{
+            ZStack(alignment: .bottomTrailing){
                 List{
-                    ForEach(officeOrders) { officeOrder in
+                    ForEach(ctos) { cto in
                         VStack {
                             VStack{
-                                Text("SO#").frame(maxWidth: .infinity, alignment: .leading)
-                                Text("SO#" + officeOrder.so_no).fontWeight(.bold)
-                            }.frame(maxWidth: .infinity, alignment: .leading)
-                            VStack{
-                                Text("Inclusive Dates").frame(maxWidth: .infinity, alignment: .leading)
-                                Text(officeOrder.inclusive_date).fontWeight(.bold)
+                                Text("CTO dates: ").frame(maxWidth: .infinity, alignment: .leading).fontWeight(.bold)
+                                Text(cto.inclusive_date)
                             }.frame(maxWidth: .infinity, alignment: .leading)
                         }
-                    }.onDelete(perform: deleteSO)
-                }
-                .navigationTitle("Office Order")
+                    }.onDelete(perform: deleteCto)
+                }.navigationTitle("Compensatory Time Off")
                 
                 Button {
                     showSheet.toggle()
@@ -45,14 +40,13 @@ struct OfficeOrderView: View {
                         .foregroundColor(.white)
                         .clipShape(Circle())
                         .shadow(radius: 4, x: 0, y: 4)
-                    
                 }
                 .sheet(isPresented: $showSheet){
                     ZStack {
                         Color.black.opacity(0.5)
                             .background(BackgroundClearView())
                             .edgesIgnoringSafeArea(.all)
-                        AddSOModal(toast: $toast)
+                        AddCtoModal(toast: $toast)
                     }
                     
                 }
@@ -67,19 +61,18 @@ struct OfficeOrderView: View {
             }
             .alert(Text("Are you sure you want to upload?"), isPresented: $showAlert) {
                 Button("Cancel", role: .cancel) {}
-                Button("OK") {
-                    
+                Button("OK") {        
                     Task {
-                        if(!officeOrders.isEmpty) {
-                            var arraySo: Array<SO> = []
-                            for officeOrder in officeOrders {
-                                let so = SO(so_no: officeOrder.so_no, daterange: officeOrder.inclusive_date)
-                                arraySo.append(so)
+                        if(!ctos.isEmpty) {
+                            var arrayCto: Array<CTO> = []
+                            for cto in ctos {
+                                let cto = CTO(daterange: cto.inclusive_date)
+                                arrayCto.append(cto)
                             }
-                            let officeOrderData = OfficeOrderData(userid: userid, so: arraySo)
-                            let response = await uploadSo(officeOrder: officeOrderData, domain: userData.domain)
+                            let ctoData = TimeOffData(userid: userid, cdo: arrayCto)
+                            let response = await uploadCto(timeOff: ctoData, domain: userData.domain)
                             if(response == "200"){
-                                deleteAllSO(officeOrders: officeOrders)
+                                deleteAllCto(ctos: ctos)
                                 toast = Toast(style: .success, message: "successfully uploaded")
                             }
                             else {
@@ -90,32 +83,29 @@ struct OfficeOrderView: View {
                             toast = Toast(style: .error, message: "Nothing to upload")
                         }
                     }
-                    
-                    
                 }
                 
             }
         }.toastView(toast: $toast)
     }
     
-    func deleteSO(_ indexSet: IndexSet){
+    func deleteCto(_ indexSet: IndexSet) {
         for index in indexSet {
-            let officeOrder = officeOrders[index]
-            modelContext.delete(officeOrder)
+            let cto = ctos[index]
+            modelContext.delete(cto)
         }
     }
     
-    func deleteAllSO(officeOrders: [OfficeOrder]){
-        for officeOrder in officeOrders {
-            modelContext.delete(officeOrder)
+    func deleteAllCto(ctos: [Cto]) {
+        for cto in ctos {
+            modelContext.delete(cto)
         }
     }
 }
 
-struct AddSOModal: View {
+struct AddCtoModal: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
-    @State private var so_no: String = ""
     @State private var date_from: Date = Date()
     @State private var date_to: Date = Date()
     @State private var showErrorAlert: Bool = false
@@ -124,7 +114,6 @@ struct AddSOModal: View {
     var body: some View {
         NavigationStack{
             VStack {
-                TextField("SO no.", text: $so_no)
                 DatePicker("Date From", selection: $date_from, in: ...date_to, displayedComponents: [.date])
                 DatePicker("Date To", selection: $date_to, in: date_from..., displayedComponents: [.date])
                 HStack{
@@ -137,18 +126,15 @@ struct AddSOModal: View {
                     .foregroundColor(.red)
                     Button{
                         alertMessage = ""
-                        
-                        if so_no.isEmpty {
-                            alertMessage = "SO no. cannot be blank"
-                        } else if date_to < date_from {
+                        if date_to < date_from {
                             alertMessage = "Date To should be later or equal to Date From"
                         }
                         
                         if !alertMessage.isEmpty {
                             showErrorAlert = true
                         } else {
-                            addSo(soNo: so_no, inclusive_date: formatDate(date_from: date_from, date_to: date_to))
-                            toast = Toast(style: .success, message: "Successfully added SO")
+                            addCto(inclusive_date: formatDate(date_from: date_from, date_to: date_to))
+                            toast = Toast(style: .success, message: "Successfully added CTO")
                             dismiss()
                         }
                     } label: {
@@ -157,7 +143,7 @@ struct AddSOModal: View {
                     .background(Color.green)
                     .padding()
                 }
-            }.navigationTitle("File Office Order")
+            }.navigationTitle("File CTO")
                 .foregroundColor(Color.black)
                 .background(Color.white)
                 .environment(\.colorScheme, .light)
@@ -170,11 +156,12 @@ struct AddSOModal: View {
                 }
         }.toastView(toast: $toast)
     }
-    func addSo(soNo: String, inclusive_date: String) {
-        let order = OfficeOrder(so_no: soNo, inclusive_date: inclusive_date)
-        modelContext.insert(order)
+    
+    func addCto(inclusive_date: String) {
+        let timeOff = Cto(inclusive_date: inclusive_date)
+        modelContext.insert(timeOff)
     }
-
+    
     func formatDate(date_from: Date, date_to: Date) -> String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
@@ -183,7 +170,7 @@ struct AddSOModal: View {
         return (stringFrom + " - " + stringTo)
     }
 }
-    
+
 #Preview {
-    OfficeOrderView()
+    CTOView()
 }

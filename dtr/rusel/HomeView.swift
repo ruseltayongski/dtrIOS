@@ -53,6 +53,12 @@ struct HomeView: View {
                         Text("Office Order")
                     }
                     NavigationLink {
+                        CTOView()
+                    } label: {
+                        Image(systemName: "doc.badge.clock")
+                        Text("Compensatory Time Off")
+                    }
+                    NavigationLink {
                         Notification()
                     } label: {
                         Image(systemName: "bell.badge")
