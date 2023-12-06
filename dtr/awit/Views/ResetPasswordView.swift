@@ -63,7 +63,6 @@ struct ModalReset: View {
                 Button("Confirm") {
                     Task {
                         let result = await resetPassword(userid: userid, reset_userid: userid_reset, domain: userData.domain)
-                        print(result ?? "none")
                         showModal.toggle()
                     }
                 }

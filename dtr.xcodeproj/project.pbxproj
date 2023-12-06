@@ -36,6 +36,8 @@
 		BF40B1052AFA06F0009D3943 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40B1042AFA06F0009D3943 /* ResetPasswordView.swift */; };
 		BF40B1082AFA4259009D3943 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40B1072AFA4259009D3943 /* NetworkHelper.swift */; };
 		BF5B58072B10530D008CD00D /* OfficeOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B58062B10530D008CD00D /* OfficeOrder.swift */; };
+		BFE10C162B1ED0F600E15CBE /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE10C152B1ED0F600E15CBE /* Announcement.swift */; };
+		BFE10C182B1F196D00E15CBE /* NavigationItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE10C172B1F196D00E15CBE /* NavigationItems.swift */; };
 		BFFBAF692B0F4685009680AA /* OfficeOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFBAF682B0F4685009680AA /* OfficeOrderView.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +73,8 @@
 		BF40B1042AFA06F0009D3943 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		BF40B1072AFA4259009D3943 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		BF5B58062B10530D008CD00D /* OfficeOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeOrder.swift; sourceTree = "<group>"; };
+		BFE10C152B1ED0F600E15CBE /* Announcement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
+		BFE10C172B1F196D00E15CBE /* NavigationItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItems.swift; sourceTree = "<group>"; };
 		BFFBAF682B0F4685009680AA /* OfficeOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeOrderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +161,7 @@
 				BF5B58062B10530D008CD00D /* OfficeOrder.swift */,
 				BF0A7C652B171E4C000F34B2 /* JsonData.swift */,
 				BF3D0CBD2B19D9B5005160EA /* Cto.swift */,
+				BFE10C152B1ED0F600E15CBE /* Announcement.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 				BF40B1042AFA06F0009D3943 /* ResetPasswordView.swift */,
 				BFFBAF682B0F4685009680AA /* OfficeOrderView.swift */,
 				BF3D0CBB2B19D859005160EA /* CTOView.swift */,
+				BFE10C172B1F196D00E15CBE /* NavigationItems.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -288,6 +294,7 @@
 				0477DBF529EBE9FB001E566F /* dtrApp.swift in Sources */,
 				BF01FAEC2B05EE2C009731C1 /* LoginView.swift in Sources */,
 				BF3D0C912B198941005160EA /* View_toastView.swift in Sources */,
+				BFE10C162B1ED0F600E15CBE /* Announcement.swift in Sources */,
 				0437C60829F18977000BF46E /* CustomCorners.swift in Sources */,
 				0491985829F6CC4D000A06A8 /* DragAnnotation.swift in Sources */,
 				040C2FC029F40EDC00AC7248 /* MapView.swift in Sources */,
@@ -300,6 +307,7 @@
 				BF2AEEA82B01EBCE0010C50D /* CurrentUser.swift in Sources */,
 				BF3D0C892B19817B005160EA /* Toast.swift in Sources */,
 				0491985429F6BD54000A06A8 /* MapViewModels.swift in Sources */,
+				BFE10C182B1F196D00E15CBE /* NavigationItems.swift in Sources */,
 				BF01FAEE2B0603A7009731C1 /* LoginHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
