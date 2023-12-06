@@ -194,6 +194,26 @@ func printRequestDetails(_ request: URLRequest) {
     }
 }
 
+func getAnnouncement(domain: String) async-> Announcement{
+    guard let url = URL(string: "http://\(domain)/dtr/mobile/office/announcement") else {
+        print("Invalid URL")
+        return Announcement(code: 0, message: "Invalid URL")
+    }
+    var request = URLRequest(url: url)
+    request.httpMethod = "GET"
+    do {
+        let (data, _) = try await URLSession.shared.data(for: request)
+        let decodedAnnouncement = try? JSONDecoder().decode(Announcement.self, from: data)
+        if let decodedAnnouncement = decodedAnnouncement {     
+            return decodedAnnouncement
+        } else {
+            return Announcement(code: 0, message: "Decoding failed")
+        }
+    } catch {
+        print("Network error or decoding failed")
+        return Announcement(code: 0, message: "Network error or decoding failed")
+    }
+}
 struct Response: Codable {
     let code: Int
     let response: String
