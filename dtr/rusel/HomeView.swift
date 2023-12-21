@@ -13,6 +13,7 @@ struct HomeView: View {
     @State var userData = CurrentUser()
     @Binding var isLoggedIn: Bool
     @State var announcement: Announcement?
+    @State var forceUpdate: ForceUpdateResponse?
     @State var showAnnouncement: Bool = false
     @State var count: Int = 0
     @State var message: String? = nil

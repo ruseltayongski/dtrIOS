@@ -214,6 +214,28 @@ func getAnnouncement(domain: String) async-> Announcement{
         return Announcement(code: 0, message: "Network error or decoding failed")
     }
 }
+
+func getUpdate(domain: String) async-> ForceUpdateResponse?{
+    guard let url = URL(string: "http://\(domain)/dtr/mobile/get/version") else {
+        print("Invalid URL")
+        return nil
+    }
+    var request = URLRequest(url: url)
+    request.httpMethod = "GET"
+    do {
+        let (data, _) = try await URLSession.shared.data(for: request)
+        let decodedUpdate = try? JSONDecoder().decode(ForceUpdateResponse.self, from: data)
+        if let decodedUpdate = decodedUpdate {
+            return decodedUpdate
+        } else {
+            return nil
+        }
+    } catch {
+        print("Network error")
+        return nil
+    }
+}
+
 struct Response: Codable {
     let code: Int
     let response: String

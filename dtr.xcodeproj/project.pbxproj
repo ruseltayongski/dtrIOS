@@ -36,6 +36,7 @@
 		BF40B1052AFA06F0009D3943 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40B1042AFA06F0009D3943 /* ResetPasswordView.swift */; };
 		BF40B1082AFA4259009D3943 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40B1072AFA4259009D3943 /* NetworkHelper.swift */; };
 		BF5B58072B10530D008CD00D /* OfficeOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5B58062B10530D008CD00D /* OfficeOrder.swift */; };
+		BFB045BA2B21A0C600627EF2 /* ForceUpdateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB045B92B21A0C600627EF2 /* ForceUpdateResponse.swift */; };
 		BFE10C162B1ED0F600E15CBE /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE10C152B1ED0F600E15CBE /* Announcement.swift */; };
 		BFE10C182B1F196D00E15CBE /* NavigationItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE10C172B1F196D00E15CBE /* NavigationItems.swift */; };
 		BFFBAF692B0F4685009680AA /* OfficeOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFBAF682B0F4685009680AA /* OfficeOrderView.swift */; };
@@ -73,6 +74,7 @@
 		BF40B1042AFA06F0009D3943 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 		BF40B1072AFA4259009D3943 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		BF5B58062B10530D008CD00D /* OfficeOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeOrder.swift; sourceTree = "<group>"; };
+		BFB045B92B21A0C600627EF2 /* ForceUpdateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceUpdateResponse.swift; sourceTree = "<group>"; };
 		BFE10C152B1ED0F600E15CBE /* Announcement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
 		BFE10C172B1F196D00E15CBE /* NavigationItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItems.swift; sourceTree = "<group>"; };
 		BFFBAF682B0F4685009680AA /* OfficeOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeOrderView.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				BF0A7C652B171E4C000F34B2 /* JsonData.swift */,
 				BF3D0CBD2B19D9B5005160EA /* Cto.swift */,
 				BFE10C152B1ED0F600E15CBE /* Announcement.swift */,
+				BFB045B92B21A0C600627EF2 /* ForceUpdateResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				0491985829F6CC4D000A06A8 /* DragAnnotation.swift in Sources */,
 				040C2FC029F40EDC00AC7248 /* MapView.swift in Sources */,
 				BF3D0C8D2B1981D3005160EA /* ToastView.swift in Sources */,
+				BFB045BA2B21A0C600627EF2 /* ForceUpdateResponse.swift in Sources */,
 				BF0A7C662B171E4C000F34B2 /* JsonData.swift in Sources */,
 				BF3D0C8F2B198204005160EA /* ToastModifier.swift in Sources */,
 				0437C60C29F19DC9000BF46E /* Home.swift in Sources */,
@@ -439,6 +443,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"dtr/Preview Content\"";
+				DEVELOPMENT_TEAM = 3Q383YJAX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = dtr/Info.plist;
@@ -470,6 +475,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"dtr/Preview Content\"";
+				DEVELOPMENT_TEAM = 3Q383YJAX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = dtr/Info.plist;
